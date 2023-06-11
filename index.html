@@ -1,18 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>WebGL Demo</title>
-    <script
-      src="gl-matrix-min.js"
-      integrity="sha512-zhHQR0/H5SEBL3Wn6yYSaTTZej12z0hVZKOv3TwCUXT1z5qeqGcXJLLrbERYRScEDDpYIJhPC1fk31gqR783iQ=="
-      crossorigin="anonymous"
-      defer
-    ></script>
-    <script src="webgl-demo.js" type="module"></script>
-  </head>
-
-  <body>
-    <canvas id="glcanvas" width="640" height="480"></canvas>
-  </body>
-</html>
+<canvas id="canvas"></canvas>
+<div id="info"></div>
+<!--
+This sample uses TWGL (Tiny WebGL) to hide the clutter.
+Otherwise the sample would be full of code not related to the point of the sample.
+For more info see https://webgl2fundamentals.org/webgl/lessons/webgl-less-code-more-fun.html
+-->
+<script src="twgl-full.min.js"></script>
+<script src="m4.js"></script>
+<script src="flattened-primitives.js"></script>
+<script src="chroma.min.js"></script>
