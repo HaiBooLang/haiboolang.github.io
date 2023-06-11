@@ -8,7 +8,7 @@
     <div class="description">
     GPU Picking with 1 pixel
     </div>
-    <canvas id="canvas" width="399" height="299"></canvas>
+    <canvas id="canvas" width="6666" height="6666"></canvas>
     <div id="info"></div>
     
     
@@ -82,6 +82,8 @@
       /** @type {HTMLCanvasElement} */
       const canvas = document.getElementById("canvas");
       const gl = canvas.getContext("webgl2");
+      canvas.width = 666;
+      canvas.height = 666;
       if (!gl) {
         return;
       }
