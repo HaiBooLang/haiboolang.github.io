@@ -1,9 +1,382 @@
-<!doctype html><html lang="zh-CN"><head><meta charset="UTF-8"/><meta http-equiv="Access-Control-Allow-Origin" content="*"><meta name="viewport" content="width=device-width,initial-scale=1"/><link rel="icon" href="/images/icon/favicon.ico"><link rel="apple-touch-icon" href="/images/logo/apple-touch-icon.png"/><link rel="bookmark" href="/images/logo/apple-touch-icon.png"/><link rel="apple-touch-icon-precomposed" sizes="200x200" href="/images/logo/apple-touch-icon.png"/><meta name="description" content="一个默默无闻的主页"/><meta name="keywords" content="haiboolang,个人主页"/><meta name="author" content="haiboolang"/><meta name="theme-color" content="#424242"/><title>haiboolangの主页</title><link rel="stylesheet" href="https://cdn.imsyy.top/gh/imsyy/file/font/HarmonyOS_Sans/regular.min.css"/><link rel="stylesheet" href="/loading/loading.min.css"><script>if ( /*@cc_on!@*/ false || (!!window.MSInputMethodContext && !!document.documentMode))
-      window.location.href =
-      "https://support.dmeng.net/upgrade-your-browser.html?referrer=" + encodeURIComponent(window.location.href)</script><script>var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?14e9f35ff8bc67fd4bcb5f07a6e6655a";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();</script><script type="module" crossorigin src="/assets/index.e470b5c7.js"></script><link rel="stylesheet" href="/assets/index.8c4f83f2.css"><link rel="manifest" href="/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/registerSW.js"></script></head><body class="loading"><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="loader"><div class="inner one"></div><div class="inner two"></div><div class="inner three"></div></div><div class="loading-word"><p class="loading-title" id="loading-title">haiboolangの主页</p><span id="loading-text">加载中</span></div></div></div><div id="app"></div><noscript><div style="text-align:center">请开启 JavaScript</div></noscript></body></html>
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Works</title>
+  <style>
+    body {
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center center;
+      background-attachment: fixed;
+      overflow-x: hidden;
+      z-index: -1;
+    }
+
+    .container::-webkit-scrollbar {
+      width: 0.5em;
+    }
+
+    .container::-webkit-scrollbar-track {
+      background-color: #f1f1f1;
+    }
+
+    .container::-webkit-scrollbar-thumb {
+      background-color: #888;
+      border-radius: 10px;
+    }
+
+    .container::-webkit-scrollbar-thumb:hover {
+      background-color: #555;
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      perspective: 1000px;
+      overflow-y: scroll;
+      scrollbar-width: none;
+      z-index: 1;
+    }
+
+    .container::-webkit-scrollbar {
+      display: none;
+    }
+
+    .box {
+      position: relative;
+      width: 300px;
+      height: 300px;
+      margin: 20px;
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+      transform-style: preserve-3d;
+      transition: transform 0.3s ease-in-out;
+      z-index: 1;
+    }
+
+    .box:hover {
+      transform: scale(1.1);
+    }
+
+    .box img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .box a {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      text-decoration: none;
+      font-size: 24px;
+      font-weight: bold;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+    }
+
+    .box:hover a {
+      opacity: 1;
+    }
+
+    canvas {
+      background-color: transparent;
+      display: block;
+    }
+
+
+    /* 加载画面样式 */
+    #loading-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0.1, 0.1, 0.1, 1);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      opacity: 1;
+      transition: opacity 1s ease-in-out;
+    }
+
+    /* 旋转动画 */
+    #loading-screen .spinner {
+      width: 50px;
+      height: 50px;
+      border: 5px solid #fff;
+      border-top-color: #000;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-right: 10px;
+      /* 添加右侧间隔 */
+    }
+
+    #loading-screen p {
+      font-size: 24px;
+      font-weight: bold;
+      margin-top: 20px;
+      color: #fff;
+      margin-left: 10px;
+      /* 添加左侧间隔 */
+    }
+
+    #loading-screen img {
+      width: 200px;
+      height: 200px;
+      margin-top: 20px;
+    }
+
+    #loading-screen:after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0) 100%);
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+
+    #loading-screen.hide {
+      opacity: 0;
+    }
+
+    #loading-screen.hide:after {
+      opacity: 1;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes slide-up {
+      from {
+        transform: translate(-50%, -50%);
+      }
+
+      to {
+        top: 0;
+        transform: translate(-50%, 0%);
+        opacity: 0;
+      }
+    }
+  </style>
+
+  <script>
+    window.onload = function () {
+      // 随机背景图片
+      const backgrounds = [
+        './backgroundImage/background1.webp',
+        './backgroundImage/background2.webp',
+        './backgroundImage/background3.webp',
+        './backgroundImage/background4.webp',
+        './backgroundImage/background5.webp',
+        './backgroundImage/background6.webp',
+        './backgroundImage/background7.webp',
+        './backgroundImage/background8.webp',
+        './backgroundImage/background9.webp',
+        './backgroundImage/background10.webp'
+      ];
+
+      const randomIndex = Math.floor(Math.random() * backgrounds.length);
+      const randomBackground = backgrounds[randomIndex];
+
+      document.body.style.backgroundImage = `url(${randomBackground})`;
+
+      const loadingScreen = document.getElementById('loading-screen');
+
+      // 延迟隐藏加载画面
+      setTimeout(function () {
+        loadingScreen.classList.add('hide');
+        loadingScreen.style.zIndex = '-1';
+      }, 3000); // 延迟 2 秒
+
+              // 禁用加载画面
+
+              loadingScreen.disabled = true;
+    };
+  </script>
+</head>
+
+<body>
+  <!-- 加载画面 -->
+  <div id="loading-screen">
+    <div class="spinner"></div>
+    <p>Loading...</p>
+  </div>
+
+  <div class="container">
+    <div class="box">
+      <img src="image1.jpg" alt="Image 1" />
+      <a href="https://www.example.com/page1">Link 1</a>
+    </div>
+    <div class="box">
+      <img src="image2.jpg" alt="Image 2" />
+      <a href="https://www.example.com/page2">Link 2</a>
+    </div>
+    <div class="box">
+      <img src="image3.jpg" alt="Image 3" />
+      <a href="https://www.example.com/page3">Link 3</a>
+    </div>
+    <div class="box">
+      <img src="image4.jpg" alt="Image 4" />
+      <a href="https://www.example.com/page4">Link 4</a>
+    </div>
+    <div class="box">
+      <img src="image5.jpg" alt="Image 5" />
+      <a href="https://www.example.com/page5">Link 5</a>
+    </div>
+    <div class="box">
+      <img src="image6.jpg" alt="Image 6" />
+      <a href="https://www.example.com/page6">Link 6</a>
+    </div>
+    <div class="box">
+      <img src="image6.jpg" alt="Image 6" />
+      <a href="https://www.example.com/page6">Link 6</a>
+    </div>
+    <div class="box">
+      <img src="image6.jpg" alt="Image 6" />
+      <a href="https://www.example.com/page6">Link 6</a>
+    </div>
+    <div class="container">
+      <div class="box">
+        <div id="model"></div>
+      </div>
+
+
+      <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/loaders/GLTFLoader.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/controls/OrbitControls.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/objects/Reflector.js"></script>
+      <script>
+        const scene = new THREE.Scene();
+
+
+        const camera = new THREE.PerspectiveCamera(
+          7,
+          window.innerWidth / window.innerHeight,
+          0.1,
+          100
+        );
+        camera.position.z = 4;
+
+
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setClearColor(0x000000, 0);
+
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        const loader = new THREE.GLTFLoader();
+        const textureLoader = new THREE.TextureLoader();
+
+        const objects = [];
+
+        function traverseScene(scene) {
+          scene.traverse((object) => {
+            if (object.isMesh) {
+              objects.push(object);
+            }
+          });
+        }
+
+
+        var myGltf;
+        loader.load(
+          "rubber_duck_toy_4k.gltf",
+          (gltf) => {
+            gltf.scene.traverse((child) => {
+              if (child.isMesh) {
+                const materials = Array.isArray(child.material)
+                  ? child.material
+                  : [child.material];
+                materials.forEach((material) => {
+                  const diffuseMap = textureLoader.load("textures/rubber_duck_toy_diff_4k.jpg");
+                  diffuseMap.flipY = false;
+                  diffuseMap.flipX = true;
+                  const normalMap = textureLoader.load("textures/rubber_duck_toy_nor_gl_4k.jpg");
+                  normalMap.flipY = false;
+                  normalMap.flipX = true;
+                  const aoMap = textureLoader.load("textures/rubber_duck_toy_arm_4k.jpg");
+                  aoMap.flipY = false;
+                  aoMap.flipX = true;
+                  material.map = diffuseMap;
+                  material.normalMap = normalMap;
+                  material.aoMap = aoMap;
+                  material.aoMapIntensity = 1;
+                });
+              }
+            });
+            myGltf = gltf;
+            scene.add(gltf.scene);
+
+            placeSceneAtOrigin();
+
+            function placeSceneAtOrigin() {
+              gltf.scene.traverse((object) => {
+                if (object.isMesh) {
+                  object.position.set(0, 0, 0);
+                }
+              });
+            }
+
+          },
+          (progress) => {
+            console.log(`Loading: ${Math.round(progress.loaded / progress.total * 100)}%`);
+          },
+          (error) => {
+            console.error(error);
+          }
+        );
+
+        // myGltf.scene.traverse((child) => {
+        //   // Do something with each child object...
+        // });
+
+
+
+        // const box = new THREE.Box3().setFromObject(object);
+        // const center = box.getCenter(new THREE.Vector3());
+        // object.position.sub(center);
+
+        const controls = new THREE.OrbitControls(camera, renderer.domElement);
+        // controls.enableDamping = true;
+        // controls.dampingFactor = 0.05;
+        // controls.screenSpacePanning = false;
+        // controls.minDistance = 0;
+        // controls.maxDistance = Infinity;
+        // controls.maxPolarAngle = Math.PI / 2;
+
+
+        renderer.setClearColor(0x000000, 0.5);
+        function animate() {
+          requestAnimationFrame(animate);
+          controls.update();
+          renderer.render(scene, camera);
+        }
+        animate();
+      </script>
+</body>
+
+</html>
